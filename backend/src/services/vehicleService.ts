@@ -1,4 +1,4 @@
-import Vehicle, { IVehicle } from '../models/Vehicle.js';
+import Vehicle, { IVehicle } from '../models/Vehicle';
 
 export interface CreateVehicleDTO {
   make: string;

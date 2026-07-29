@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { VehicleService } from '../services/vehicleService.js';
+import { VehicleService } from '../services/vehicleService';
 
 export const createVehicle = async (req: Request, res: Response): Promise<void> => {
   try {

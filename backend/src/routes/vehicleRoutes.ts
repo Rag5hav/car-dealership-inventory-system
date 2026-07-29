@@ -8,8 +8,8 @@ import {
   deleteVehicle,
   purchaseVehicle,
   restockVehicle,
-} from '../controllers/vehicleController.js';
-import { protect, adminOnly } from '../middlewares/authMiddleware.js';
+} from '../controllers/vehicleController';
+import { protect, adminOnly } from '../middlewares/authMiddleware';
 
 const router = Router();
 

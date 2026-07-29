@@ -2,8 +2,8 @@ import express, { Application, Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 
-import authRoutes from './routes/authRoutes.js';
-import vehicleRoutes from './routes/vehicleRoutes.js';
+import authRoutes from './routes/authRoutes';
+import vehicleRoutes from './routes/vehicleRoutes';
 
 dotenv.config();
 

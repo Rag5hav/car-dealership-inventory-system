@@ -1,5 +1,5 @@
-import User, { IUser } from '../models/User.js';
-import { generateToken } from '../utils/jwt.js';
+import User, { IUser } from '../models/User';
+import { generateToken } from '../utils/jwt';
 
 export interface RegisterDTO {
   email: string;
