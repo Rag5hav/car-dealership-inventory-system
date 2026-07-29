@@ -47,4 +47,9 @@ const VehicleSchema: Schema = new Schema(
   }
 );
 
+// Compound & Single Field Database Indexes for O(log N) Query Speed
+VehicleSchema.index({ make: 1, category: 1, price: 1 });
+VehicleSchema.index({ price: 1 });
+VehicleSchema.index({ quantity: 1 });
+
 export default mongoose.model<IVehicle>('Vehicle', VehicleSchema);
