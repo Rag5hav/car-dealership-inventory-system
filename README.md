@@ -2,7 +2,7 @@
 
 A full-stack **Car Dealership Inventory Management System** built with Node.js, Express, TypeScript, MongoDB (Mongoose), React, Tailwind CSS, and Jest using **Test-Driven Development (TDD)** and clean MVC architecture.
 
-[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-28%20Passed-emerald.svg)](backend/tests)
+[![Backend Tests](https://img.shields.io/badge/Backend%20Tests-36%20Passed-emerald.svg)](backend/tests)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.4-blue.svg)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-purple.svg)](LICENSE)
 
