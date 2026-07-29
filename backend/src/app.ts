@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 
 import authRoutes from './routes/authRoutes';
 import vehicleRoutes from './routes/vehicleRoutes';
+import { globalErrorHandler } from './middlewares/errorHandler';
 
 dotenv.config();
 
@@ -27,10 +28,7 @@ app.use((req: Request, res: Response) => {
   res.status(404).json({ error: 'Route not found' });
 });
 
-// Global Error Handler
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.error(err.stack);
-  res.status(500).json({ error: err.message || 'Internal Server Error' });
-});
+// Centralized Operational Error Handler
+app.use(globalErrorHandler);
 
 export default app;
