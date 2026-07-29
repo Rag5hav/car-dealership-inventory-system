@@ -10,6 +10,7 @@ import {
   restockVehicle,
 } from '../controllers/vehicleController';
 import { protect, adminOnly } from '../middlewares/authMiddleware';
+import { validateVehiclePayload } from '../middlewares/validateRequest';
 
 const router = Router();
 
@@ -22,7 +23,7 @@ router.get('/:id', getVehicleById);
 router.post('/:id/purchase', protect, purchaseVehicle);
 
 // Admin-only protected routes
-router.post('/', protect, adminOnly, createVehicle);
+router.post('/', protect, adminOnly, validateVehiclePayload, createVehicle);
 router.put('/:id', protect, adminOnly, updateVehicle);
 router.delete('/:id', protect, adminOnly, deleteVehicle);
 router.post('/:id/restock', protect, adminOnly, restockVehicle);
