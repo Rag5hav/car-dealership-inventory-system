@@ -3,6 +3,7 @@ import { vehicleAPI } from '../services/api';
 import { Vehicle, SearchFilters } from '../types';
 import { VehicleCard } from '../components/VehicleCard';
 import { useAuth } from '../context/AuthContext';
+import { useDebounce } from '../hooks/useDebounce';
 import { Search, Filter, RefreshCw, Car, CheckCircle2, AlertTriangle } from 'lucide-react';
 
 export const UserDashboard: React.FC = () => {
@@ -40,9 +41,11 @@ export const UserDashboard: React.FC = () => {
     }
   };
 
+  const debouncedMake = useDebounce(filters.make, 400);
+
   useEffect(() => {
-    fetchVehicles();
-  }, []);
+    fetchVehicles(filters);
+  }, [debouncedMake]);
 
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
