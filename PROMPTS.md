@@ -33,3 +33,15 @@ This document records the prompt history and user instructions used throughout t
 - Created failing integration test suite `tests/vehicle.test.ts` covering CRUD, search filters, role access, zero-stock purchase rules, and restock (RED).
 - Implemented `Vehicle` Mongoose model, `VehicleService`, `vehicleController`, and `vehicleRoutes` guarded by authentication and role middleware (GREEN).
 - 28/28 total backend tests passing with 100% success rate.
+
+---
+
+## Prompt 4: Frontend SPA (React, TypeScript & Tailwind CSS)
+**Prompt**:
+> Build a modern responsive SPA using React, TypeScript, Tailwind CSS, Axios, and React Router. Create Login, Register, Customer Dashboard, and Admin Dashboard pages with live search, purchase zero-stock auto-disabling, restock modal, vehicle CRUD modals, and toast notifications.
+
+**Outcome**:
+- Created Vite React TypeScript frontend with Tailwind CSS and glassmorphism styling.
+- Implemented `AuthContext`, Axios API client with automatic JWT token attachment.
+- Created `LoginPage`, `RegisterPage`, `UserDashboard` (with dynamic search/filter controls & auto zero-stock purchase disabling), and `AdminDashboard` (with metric overview cards, vehicle data table, Add/Edit modal, and Restock modal).
+- Production build (`npm run build`) completed cleanly with zero warnings.
