@@ -38,6 +38,20 @@ Key architectural highlights:
 
 ---
 
+## Screenshots & User Interface
+
+### Customer Showroom & Inventory Catalog
+![Customer Catalog](https://raw.githubusercontent.com/Rag5hav/car-dealership-inventory-system/main/docs/screenshots/customer_catalog.png)
+
+*Interactive customer catalog featuring real-time search filters, vehicle categories, stock badges, and automatic zero-quantity purchase button disabling.*
+
+### Admin Control Center & Fleet Management
+![Admin Dashboard](https://raw.githubusercontent.com/Rag5hav/car-dealership-inventory-system/main/docs/screenshots/admin_dashboard.png)
+
+*Administrator dashboard displaying fleet asset metric cards (Total Stock, Asset Value, Out of Stock Alerts), vehicle inventory data table, Add/Edit Vehicle modal, and Restock controls.*
+
+---
+
 ## Technology Stack
 
 ### Backend
