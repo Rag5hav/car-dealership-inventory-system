@@ -5,6 +5,7 @@ export interface RegisterDTO {
   email: string;
   password: string;
   role?: 'user' | 'admin';
+  adminKey?: string;
 }
 
 export interface LoginDTO {
@@ -23,6 +24,15 @@ export interface AuthResponse {
 
 export class AuthService {
   static async register(dto: RegisterDTO): Promise<AuthResponse> {
+    const requestedRole = dto.role || 'user';
+
+    if (requestedRole === 'admin') {
+      const validAdminKey = process.env.ADMIN_SECRET_KEY || 'admin_secret_key_2026';
+      if (!dto.adminKey || dto.adminKey !== validAdminKey) {
+        throw new Error('Invalid admin secret key');
+      }
+    }
+
     const existingUser = await User.findOne({ email: dto.email.toLowerCase() });
     if (existingUser) {
       throw new Error('User already exists with this email');
@@ -31,7 +41,7 @@ export class AuthService {
     const user = await User.create({
       email: dto.email,
       password: dto.password,
-      role: dto.role || 'user',
+      role: requestedRole,
     });
 
     const token = generateToken(user._id.toString(), user.role);

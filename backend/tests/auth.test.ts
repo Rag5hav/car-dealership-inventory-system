@@ -34,6 +34,37 @@ describe('Authentication Module (TDD)', () => {
       expect(res.body.user).not.toHaveProperty('password');
     });
 
+    it('should allow registering as admin when correct adminKey is provided', async () => {
+      const res = await request(app)
+        .post('/api/auth/register')
+        .send({
+          email: 'newadmin@example.com',
+          password: 'password123',
+          role: 'admin',
+          adminKey: 'admin_secret_key_2026',
+        });
+
+      expect(res.status).toBe(201);
+      expect(res.body.user).toMatchObject({
+        email: 'newadmin@example.com',
+        role: 'admin',
+      });
+    });
+
+    it('should reject admin registration when adminKey is invalid or missing', async () => {
+      const res = await request(app)
+        .post('/api/auth/register')
+        .send({
+          email: 'fakeadmin@example.com',
+          password: 'password123',
+          role: 'admin',
+          adminKey: 'wrong_key',
+        });
+
+      expect(res.status).toBe(403);
+      expect(res.body).toHaveProperty('error', 'Invalid admin secret key');
+    });
+
     it('should fail when registering an existing email', async () => {
       await request(app).post('/api/auth/register').send({
         email: 'user@example.com',

@@ -43,5 +43,16 @@ This document records the prompt history and user instructions used throughout t
 **Outcome**:
 - Created Vite React TypeScript frontend with Tailwind CSS and glassmorphism styling.
 - Implemented `AuthContext`, Axios API client with automatic JWT token attachment.
-- Created `LoginPage`, `RegisterPage`, `UserDashboard` (with dynamic search/filter controls & auto zero-stock purchase disabling), and `AdminDashboard` (with metric overview cards, vehicle data table, Add/Edit modal, and Restock modal).
-- Production build (`npm run build`) completed cleanly with zero warnings.
+- Created `LoginPage`, `RegisterPage`, `UserDashboard`, and `AdminDashboard`.
+
+---
+
+## Prompt 5: Admin Registration Security (ADMIN_SECRET_KEY Passcode)
+**Prompt**:
+> Secure Admin registration by requiring a secret passcode (`ADMIN_SECRET_KEY` in `.env`). Require `adminKey` in request body when selecting Admin role during registration; reject unauthorized attempts with 403 Forbidden.
+
+**Outcome**:
+- Added `ADMIN_SECRET_KEY` to `.env` and `.env.example`.
+- Wrote failing TDD tests in `tests/auth.test.ts` (RED).
+- Updated `AuthService.register`, `authController`, `AuthContext`, `authAPI.register`, and `RegisterPage.tsx` (GREEN).
+- 38/38 backend tests passing cleanly.

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { UserPlus, Mail, Lock, Shield, Car, AlertCircle } from 'lucide-react';
+import { UserPlus, Mail, Lock, Shield, Car, AlertCircle, KeyRound } from 'lucide-react';
 
 export const RegisterPage: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState<'user' | 'admin'>('user');
+  const [adminKey, setAdminKey] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -20,12 +21,16 @@ export const RegisterPage: React.FC = () => {
       setError('Password must be at least 6 characters');
       return;
     }
+    if (role === 'admin' && !adminKey) {
+      setError('Admin Secret Key is required to register as Administrator');
+      return;
+    }
     setLoading(true);
     try {
-      await register(email, password, role);
+      await register(email, password, role, role === 'admin' ? adminKey : undefined);
       navigate('/');
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Registration failed. Email may already be registered.');
+      setError(err.response?.data?.error || 'Registration failed. Email may already be registered or invalid secret key.');
     } finally {
       setLoading(false);
     }
@@ -116,6 +121,29 @@ export const RegisterPage: React.FC = () => {
                 </button>
               </div>
             </div>
+
+            {/* Admin Secret Passcode Field */}
+            {role === 'admin' && (
+              <div className="animate-in fade-in zoom-in-95 duration-200">
+                <div className="flex items-center justify-between mb-1.5">
+                  <label className="block text-xs font-semibold text-indigo-400 uppercase tracking-wider">
+                    Admin Secret Passcode *
+                  </label>
+                  <span className="text-[10px] text-slate-500">Demo Key: admin_secret_key_2026</span>
+                </div>
+                <div className="relative">
+                  <KeyRound className="w-5 h-5 absolute left-3.5 top-3 text-indigo-400" />
+                  <input
+                    type="password"
+                    value={adminKey}
+                    onChange={(e) => setAdminKey(e.target.value)}
+                    placeholder="Enter ADMIN_SECRET_KEY from .env"
+                    className="w-full pl-11 pr-4 py-2.5 rounded-xl bg-indigo-950/40 border border-indigo-500/40 text-white placeholder-slate-500 focus:outline-none focus:border-indigo-400 text-sm transition-all"
+                    required
+                  />
+                </div>
+              </div>
+            )}
 
             <button
               type="submit"
